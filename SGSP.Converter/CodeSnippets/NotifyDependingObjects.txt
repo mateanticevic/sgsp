@@ -1,0 +1,4 @@
+﻿
+GameObject go{gameObject}{field} = GameObject.Find("{gameObject}");
+{scriptName} beh{gameObject}{field} = ({scriptName})go{gameObject}{field}.GetComponent("{scriptName}");
+beh{gameObject}{field}.{field} = {value};

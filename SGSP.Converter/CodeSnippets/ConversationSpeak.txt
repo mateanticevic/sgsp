@@ -1,0 +1,10 @@
+﻿
+if ({thisSpeak})
+{
+	if(Input.GetMouseButtonDown(0))
+	{
+		{nextSpeak} = true;
+		{thisSpeak} = false;
+		return;
+	}
+}

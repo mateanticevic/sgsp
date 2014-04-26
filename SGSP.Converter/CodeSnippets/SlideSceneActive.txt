@@ -1,0 +1,10 @@
+﻿
+if (slideSceneActive{ss})
+{
+	if(!slideSceneStarted{ss})
+	{
+		slideSceneStarted{ss} = true;
+		{mainScript}.StartSlideScene{ss}();
+	}
+	return;
+}

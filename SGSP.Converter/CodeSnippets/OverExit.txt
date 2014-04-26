@@ -1,0 +1,5 @@
+﻿
+if (OverExit{exit})
+{
+	GUI.TextArea(new Rect(Input.mousePosition.x, 600 - Input.mousePosition.y, 150, 20), "{description}");
+}

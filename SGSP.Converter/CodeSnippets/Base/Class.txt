@@ -1,0 +1,5 @@
+﻿public class {scriptName} : MonoBehaviour
+{
+{properties}
+{content}
+}

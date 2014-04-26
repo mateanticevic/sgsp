@@ -1,0 +1,12 @@
+﻿
+{id}Image = new GameObject ("{id}Image");
+
+Texture2D txt{id}Image = Resources.Load("{uri}") as Texture2D;
+txt{id}Image.wrapMode = TextureWrapMode.Clamp;
+
+Sprite sprite{id}Image = Sprite.Create(txt{id}Image, new Rect(0,0,800,600), new Vector2(0,0));
+		
+{id}Image.AddComponent ("SpriteRenderer");
+SpriteRenderer sr{id}Image = {id}Image.GetComponent<SpriteRenderer> ();
+sr{id}Image.sprite = sprite{id}Image;
+sr{id}Image.sortingOrder = 10;

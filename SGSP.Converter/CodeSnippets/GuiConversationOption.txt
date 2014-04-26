@@ -1,0 +1,6 @@
+﻿
+if (GUI.Button (new Rect (0, 400 + 30 * {index}, 7 * {width}, 20), "{text}"))
+{
+	{next} = true;
+	{optionNode} = false;
+}

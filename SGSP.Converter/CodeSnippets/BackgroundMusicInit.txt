@@ -1,0 +1,4 @@
+﻿bgMusic = gameObject.AddComponent<AudioSource>();
+bgMusic.clip = Resources.Load("{uri}") as AudioClip;
+bgMusic.loop = true;
+bgMusic.Play ();

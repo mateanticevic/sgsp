@@ -1,0 +1,25 @@
+﻿
+Vector3 mp{exitId} = Input.mousePosition;
+if (mp{exitId}.x > {x} && mp{exitId}.x < {x} + {width} && mp{exitId}.y > 600 - {y} - {height} && mp{exitId}.y < 600 - {y})
+{
+	OverExit{exitId} = true;
+	if (Input.GetMouseButtonDown(0))
+	{
+		if({condition})
+		{
+			{effect}
+			if({sameScene})
+			{
+				{speak} = true;
+			}
+			else
+			{
+				Application.LoadLevel("{scene}");
+			}
+		}
+	}
+}
+else
+{
+	OverExit{exitId} = false;
+}

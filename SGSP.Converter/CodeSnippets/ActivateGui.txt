@@ -1,0 +1,10 @@
+﻿
+if (Input.GetMouseButtonDown (1))
+{
+	if(!{id}GuiActive)
+	{
+		{id}GuiPosition = Input.mousePosition;
+	}
+
+	{id}GuiActive = {id}GuiActive == false ? true : false;
+}

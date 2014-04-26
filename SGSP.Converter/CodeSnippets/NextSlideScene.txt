@@ -1,0 +1,5 @@
+﻿GameObject slideToDestroy = slides{id} [0];
+slides{id}.RemoveAt (0);
+Destroy (slideToDestroy);
+
+return slides{id}.Count;

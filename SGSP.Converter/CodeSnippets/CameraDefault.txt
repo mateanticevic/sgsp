@@ -1,0 +1,5 @@
+﻿
+UnityEngine.Camera cam = GameObject.Find ("Main Camera").camera as UnityEngine.Camera;
+cam.transform.position = new Vector3 (4.009598f, 2.997053f, -10f);
+cam.camera.rect = new Rect (0, 0, 4, 3);
+cam.camera.orthographicSize = 2.903718f;

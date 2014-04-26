@@ -1,0 +1,10 @@
+﻿Texture2D txt{slide} = Resources.Load("{uri}") as Texture2D;
+Sprite sprite{slide} = Sprite.Create(txt{slide}, new Rect(0,0,800,600), new Vector2(0,0));
+		
+GameObject ss{slide} = new GameObject ("ss{slide}");
+		
+ss{slide}.AddComponent ("SpriteRenderer");
+ss{slide}.GetComponent<SpriteRenderer> ().sprite = sprite{slide};
+ss{slide}.GetComponent<SpriteRenderer> ().sortingOrder = 100 - {slide};
+
+slides{id}.Add (ss{slide});

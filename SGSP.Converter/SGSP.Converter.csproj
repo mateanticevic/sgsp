@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{707C4B8D-889B-403C-9AA4-81AFBC7A3C65}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SGSP.Converter</RootNamespace>
+    <AssemblyName>SGSP.Converter</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeSnippets\CodeTemplate.Designer.cs">
+      <DependentUpon>CodeTemplate.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CodeUtility.cs" />
+    <Compile Include="ConvertLogic\ScriptExecuteEffect.cs" />
+    <Compile Include="ConvertLogic\ScriptIf.cs" />
+    <Compile Include="ConvertLogic\Conditions\IfGenerator.cs" />
+    <Compile Include="ConvertLogic\ScriptGuiConversationSpeak.cs" />
+    <Compile Include="ConvertLogic\ScriptActivateGui.cs" />
+    <Compile Include="ConvertLogic\ScriptActivateGuiConditioned.cs" />
+    <Compile Include="ConvertLogic\ScriptAddSlideScene.cs" />
+    <Compile Include="ConvertLogic\ScriptBackground.cs" />
+    <Compile Include="ConvertLogic\ScriptBackgroundMusic.cs" />
+    <Compile Include="ConvertLogic\ScriptBackgroundMusicControl.cs" />
+    <Compile Include="ConvertLogic\ScriptBackgroundMusicInit.cs" />
+    <Compile Include="ConvertLogic\ScriptCameraDefault.cs" />
+    <Compile Include="ConvertLogic\ScriptConversationSpeak.cs" />
+    <Compile Include="ConvertLogic\ScriptExit.cs" />
+    <Compile Include="ConvertLogic\ScriptExitToSlideScene.cs" />
+    <Compile Include="ConvertLogic\ScriptGuiSpeakPlayer.cs" />
+    <Compile Include="ConvertLogic\ScriptIsOver.cs" />
+    <Compile Include="ConvertLogic\ScriptNextSlideScene.cs" />
+    <Compile Include="ConvertLogic\ScriptNotifyDependingObjects.cs" />
+    <Compile Include="ConvertLogic\ScriptObjectImage.cs" />
+    <Compile Include="ConvertLogic\ScriptGuiOptionNode.cs" />
+    <Compile Include="ConvertLogic\ScriptOverExit.cs" />
+    <Compile Include="ConvertLogic\ScriptOverObject.cs" />
+    <Compile Include="ConvertLogic\ScriptShowGui.cs" />
+    <Compile Include="ConvertLogic\ScriptSlideSceneActive.cs" />
+    <Compile Include="ConvertLogic\ScriptSlideSceneStarted.cs" />
+    <Compile Include="ConvertLogic\ScriptVisibility.cs" />
+    <Compile Include="Generator.cs" />
+    <Compile Include="ModelCreator\Model.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScriptFactory.cs" />
+    <Compile Include="Script\CodeChunk.cs" />
+    <Compile Include="Script\Converters.cs" />
+    <Compile Include="Script\Enums.cs" />
+    <Compile Include="Script\ScriptMethod.cs" />
+    <Compile Include="Script\ScriptProperty.cs" />
+    <Compile Include="Script\UnityScript.cs" />
+    <Compile Include="Resources\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Settings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Snippet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Snippet.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Unity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Unity.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UnityProject\UnityProjectUtility.cs" />
+    <Compile Include="Utility\PngUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CodeSnippets\CodeTemplate.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CodeTemplate.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Settings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Snippet.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Snippet.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Unity.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Unity.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CodeSnippets\ActivateGui.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\ActivateGuiConditioned.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\AddSlideScene.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\Background.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\BackgroundMusic.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\BackgroundMusicControl.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\BackgroundMusicInit.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\Base\Class.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\Base\Method.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\CameraDefault.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\ConversationSpeak.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\ExecuteEffect.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\Exit.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\ExitToSlideScene.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\GuiConversationOption.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\GuiConversationSpeak.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\GuiSpeakPlayer.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\If.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\IsOver.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\NextSlideScene.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\NotifyDependingObjects.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\ObjectImage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\OverExit.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\OverObject.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\ScriptBackgroundMusicActivity.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\ShowGui.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\SlideSceneActive.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\SlideSceneStarted.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeSnippets\Visibility.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SGSP.eAdventure\SGSP.eAdventure.csproj">
+      <Project>{fad19ed3-efaf-4fa7-adc3-4804d65ff47a}</Project>
+      <Name>SGSP.eAdventure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UnityProject\Default.unity">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,85 @@
+﻿<Window x:Class="SGSP.Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="600" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="149*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid x:Name="chapterItems" Visibility="Collapsed" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"  />
+                <RowDefinition Height="Auto"  />
+            </Grid.RowDefinitions>
+            <Expander Header="Scenes" Grid.Row="0" Style="{StaticResource ExpanderChapterItem}">
+                <ListBox x:Name="listScenes" Height="Auto" SelectionChanged="listScenes_SelectionChanged" Style="{StaticResource ListBoxDefault}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Id}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Expander>
+            <Expander Header="Objects" Grid.Row="1" Style="{StaticResource ExpanderChapterItem}">
+                <ListBox x:Name="listObjects" Height="Auto" SelectionChanged="listObjects_SelectionChanged" Style="{StaticResource ListBoxDefault}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Id}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Expander>
+            <Expander Header="Slide scenes" Grid.Row="2" Style="{StaticResource ExpanderChapterItem}">
+                <ListBox x:Name="listSlideScenes" Height="Auto" Style="{StaticResource ListBoxDefault}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Id}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Expander>
+        </Grid>
+        
+        <Grid Grid.Column="1" x:Name="selectedItem">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{Binding Id}" FontSize="48" Margin="20,10,0,0"/>
+            <ListBox Grid.Row="1" ItemsSource="{Binding Resources}" Style="{StaticResource ListBoxDefault}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Expander Header="Resource list" IsExpanded="True">
+                            <StackPanel Orientation="Horizontal">
+                                <ListBox ItemsSource="{Binding Assets}" Style="{StaticResource ListBoxDefault}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Uri}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox ItemsSource="{Binding Condition.Actives}" Style="{StaticResource ListBoxDefault}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Flag}" Style="{StaticResource TextBlockFlagTrue}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox ItemsSource="{Binding Condition.Inactives}" Style="{StaticResource ListBoxDefault}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Flag}" Style="{StaticResource TextBlockFlagFalse}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </Expander>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Window>

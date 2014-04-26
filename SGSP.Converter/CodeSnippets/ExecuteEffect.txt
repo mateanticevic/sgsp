@@ -1,0 +1,8 @@
+﻿
+if({effectId})
+{
+	{slideSceneActivate}
+	{sceneLoad}
+	{setFlags}
+	{effectId} = false;
+}

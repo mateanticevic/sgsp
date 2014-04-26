@@ -1,0 +1,5 @@
+﻿
+if ({speak})
+{
+	GUI.TextArea(new Rect(0, 0, 7 * {width}, 20), "{text}");
+}

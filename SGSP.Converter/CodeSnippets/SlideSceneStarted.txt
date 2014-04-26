@@ -1,0 +1,13 @@
+﻿
+if (slideSceneStarted{ss})
+{
+	if(Input.GetMouseButtonDown(0))
+	{
+		if({mainScript}.NextSlideScene{ss}() == 0)
+		{
+			slideSceneStarted{ss} = false;
+			slideSceneActive{ss} = false;
+			return;
+		}
+	}
+}

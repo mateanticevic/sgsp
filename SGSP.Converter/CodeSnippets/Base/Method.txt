@@ -1,0 +1,5 @@
+﻿{menu}
+{public} {static} {returns} {name}()
+{
+{payload}
+}

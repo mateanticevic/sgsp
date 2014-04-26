@@ -1,0 +1,3 @@
+﻿AudioSource audioSrc = this.GetComponent<AudioSource> ();
+audioSrc.loop = true;
+audioSrc.Play ();

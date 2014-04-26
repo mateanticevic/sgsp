@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SGSP.eAdventure.BaseElement">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BaseElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Book" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Book.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Chapter" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAgAQAAAAAAAAAAAFAAQAAAAAAAAA=</HashCode>
+      <FileName>Chapter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Character">
+    <Position X="6" Y="4" Width="1.5" />
+    <Members>
+      <Method Name="Character" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Config" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAABEAAAAQAAAAEAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Conversation">
+    <Position X="8" Y="1.25" Width="1.5" />
+    <Members>
+      <Method Name="Conversation" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Conversation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Object">
+    <Position X="1.25" Y="1.25" Width="1.5" />
+    <Members>
+      <Method Name="Object" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Object.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Player" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Scene">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <Members>
+      <Method Name="Scene" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAACAAAAAAAAAAAAAAAAAFAAQAAAEQAAAA=</HashCode>
+      <FileName>Scene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.SlideScene">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <Members>
+      <Method Name="SlideScene" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>SlideScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.VideoScene" Collapsed="true">
+    <Position X="20" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VideoScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.Action">
+    <Position X="3.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Action.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.Condition" Collapsed="true">
+    <Position X="21.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Condition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.Description" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Description.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.Effect" Collapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAACAAAEAAAAgAAAAAAIACABAAAAAAABAAAA=</HashCode>
+      <FileName>Common\Effect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.Resource" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Resource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.ResourceList" Collapsed="true">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Common\ResourceList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.TextColor" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIgAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Common\TextColor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.Transform" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Common\Transform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.Use" Collapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Use.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.ActionItems.TalkTo">
+    <Position X="3.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\ActionItems\TalkTo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.ConditionItems.Active" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\ConditionItems\Active.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.ConditionItems.Inactive" Collapsed="true">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\ConditionItems\Inactive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.Common.ConditionItems.ObjectWithCondition">
+    <Position X="0.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\ConditionItems\ObjectWithCondition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.ConversationItems.ConversationNode">
+    <Position X="7" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConversationItems\ConversationNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.ConversationItems.DialogueNode">
+    <Position X="5.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAABAAAgAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConversationItems\DialogueNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.ConversationItems.Option" Collapsed="true">
+    <Position X="21.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConversationItems\Option.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.ConversationItems.OptionNode">
+    <Position X="8.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAABAAAA=</HashCode>
+      <FileName>ConversationItems\OptionNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.ConversationItems.Speak" Collapsed="true">
+    <Position X="11.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAACAAAAAA=</HashCode>
+      <FileName>ConversationItems\Speak.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.ConversationItems.SpeakChar" Collapsed="true">
+    <Position X="12.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>ConversationItems\SpeakChar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.ConversationItems.SpeakPlayer" Collapsed="true">
+    <Position X="10.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConversationItems\SpeakPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.SceneItems.ActiveArea">
+    <Position X="1.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneItems\ActiveArea.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.SceneItems.Exit">
+    <Position X="0.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAQAwBAAAAAQAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneItems\Exit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.SceneItems.SceneCharacter" Collapsed="true">
+    <Position X="20" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAQAAAAAAAAAAAAAAAaAA=</HashCode>
+      <FileName>SceneItems\SceneCharacter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.SceneItems.SceneObject" Collapsed="true">
+    <Position X="21.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAABYAA=</HashCode>
+      <FileName>SceneItems\SceneObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SGSP.eAdventure.SceneItems.Resources.Asset" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAAAAAA=</HashCode>
+      <FileName>SceneItems\Resources\Asset.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

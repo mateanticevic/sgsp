@@ -1,0 +1,6 @@
+﻿Texture2D txtBg{id} = Resources.Load("{uri}") as Texture2D;
+Sprite spriteBg{id} = Sprite.Create(txtBg{id}, new Rect(0,0,800,600), new Vector2(0,0));
+	
+GameObject bg{id} = new GameObject ("Background{id}");		
+bg{id}.AddComponent ("SpriteRenderer");
+bg{id}.GetComponent<SpriteRenderer> ().sprite = spriteBg{id};

@@ -1,0 +1,19 @@
+﻿
+Vector3 mp{id} = Input.mousePosition;
+if (mp{id}.x > {x} && mp{id}.x < {x} + {width} && mp{id}.y > 600 - {y} - {height} && mp{id}.y < 600 - {y})
+{
+	OverExit{id} = true;
+	if (Input.GetMouseButtonDown (1))
+	{
+		if(!{id}GuiActive)
+		{
+			{id}GuiPosition = Input.mousePosition;
+		}
+
+		{id}GuiActive = {id}GuiActive == false ? true : false;
+	}
+}
+else
+{
+	OverExit{id} = false;
+}

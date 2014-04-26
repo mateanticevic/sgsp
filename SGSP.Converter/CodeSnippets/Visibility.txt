@@ -1,0 +1,8 @@
+﻿if({condition})
+{
+	this.renderer.enabled = true;
+}
+else
+{
+	this.renderer.enabled = false;
+}

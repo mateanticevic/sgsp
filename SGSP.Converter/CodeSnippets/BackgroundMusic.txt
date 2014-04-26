@@ -1,0 +1,3 @@
+﻿AudioSource audioSource = bg.AddComponent<AudioSource>();
+audioSource.clip = Resources.Load("{uri}") as AudioClip;
+bg.AddComponent ("BgMusic");

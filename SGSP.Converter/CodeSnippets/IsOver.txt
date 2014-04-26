@@ -1,0 +1,6 @@
+﻿
+Vector3 mp{overObject} = Input.mousePosition;
+if (mp{overObject}.x > {x} && mp{overObject}.x < {x} + {width} && mp{overObject}.y > 600 - {y} - {height} && mp{overObject}.y < 600 - {y})
+	{overObject} = true;
+else
+	{overObject} = false;

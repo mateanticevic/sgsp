@@ -1,0 +1,11 @@
+﻿if ({condition})
+{
+	if(!bgMusic.isPlaying)
+	{
+		bgMusic.Play();
+	}
+}
+else
+{
+	bgMusic.Stop();
+}

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FAD19ED3-EFAF-4FA7-ADC3-4804D65FF47A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SGSP.eAdventure</RootNamespace>
+    <AssemblyName>SGSP.eAdventure</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseElement.cs" />
+    <Compile Include="Book.cs" />
+    <Compile Include="Chapter.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="Common\Action.cs" />
+    <Compile Include="Common\ActionItems\TalkTo.cs" />
+    <Compile Include="Common\Condition.cs" />
+    <Compile Include="Common\ConditionItems\Active.cs" />
+    <Compile Include="Common\ConditionItems\Inactive.cs" />
+    <Compile Include="Common\ConditionItems\ObjectWithCondition.cs" />
+    <Compile Include="Common\Effect.cs" />
+    <Compile Include="Common\Resource.cs" />
+    <Compile Include="Common\ResourceList.cs" />
+    <Compile Include="Common\TextColor.cs" />
+    <Compile Include="Common\Transform.cs" />
+    <Compile Include="Common\Use.cs" />
+    <Compile Include="Config.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Config.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Conversation.cs" />
+    <Compile Include="ConversationItems\ConversationNode.cs" />
+    <Compile Include="ConversationItems\DialogueNode.cs" />
+    <Compile Include="ConversationItems\Option.cs" />
+    <Compile Include="ConversationItems\OptionNode.cs" />
+    <Compile Include="ConversationItems\Speak.cs" />
+    <Compile Include="ConversationItems\SpeakChar.cs" />
+    <Compile Include="ConversationItems\SpeakPlayer.cs" />
+    <Compile Include="Element.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Element.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Object.cs" />
+    <Compile Include="Common\Description.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene.cs" />
+    <Compile Include="SceneItems\ActiveArea.cs" />
+    <Compile Include="SceneItems\Exit.cs" />
+    <Compile Include="SceneItems\Resources\Asset.cs" />
+    <Compile Include="SceneItems\SceneCharacter.cs" />
+    <Compile Include="SceneItems\SceneObject.cs" />
+    <Compile Include="SlideScene.cs" />
+    <Compile Include="VideoScene.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Config.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Element.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Element.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ObjectItems\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

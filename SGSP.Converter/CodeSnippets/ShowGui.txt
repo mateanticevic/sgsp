@@ -1,0 +1,12 @@
+﻿
+if ({id}GuiActive)
+{
+	Texture2D {id}GuiTxt = Resources.Load ("Gear") as Texture2D;
+	GUIContent {id}Gui = new GUIContent ({id}GuiTxt, "Answer the telephone");				
+	if (GUI.Button (new Rect ({id}GuiPosition.x, 600 - {id}GuiPosition.y, 64, 64), {id}Gui))
+	{
+	{action}
+		{id}GuiActive = false;
+		OverExit{id} = false;
+	}
+}

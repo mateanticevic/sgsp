@@ -1,0 +1,6 @@
+﻿
+if ({id})
+{
+	GUI.TextArea(new Rect(0, 0, 300, 50), "{text}");
+
+}
