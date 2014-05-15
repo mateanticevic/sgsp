@@ -460,6 +460,8 @@ namespace SGSP.Converter.ModelCreator
 
         public static Condition CreateCondition(XElement ele)
         {
+            if (ele == null) return null;
+
             Condition condition = new Condition();
 
             foreach (XElement active in ele.Elements("active"))
