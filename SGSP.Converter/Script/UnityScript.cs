@@ -22,9 +22,21 @@ namespace SGSP.Converter.Script
             UsingAddDefaults();
         }
 
+        private string scriptName;
+
         public List<ScriptMethod> Methods { get; set; }
         public List<ScriptProperty> Properties { get; set; }
-        public string ScriptName { get; set; }
+        public string ScriptName
+        {
+            get
+            {
+                return scriptName;
+            }
+            set
+            {
+                scriptName = value.Replace("-", String.Empty); ;
+            }
+        }
         public ScriptType Type { get; set; }
         public List<String> Using { get; set; }
 

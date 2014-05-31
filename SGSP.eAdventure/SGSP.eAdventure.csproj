@@ -52,6 +52,8 @@
     <Compile Include="Chapter.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Common\Action.cs" />
+    <Compile Include="Common\ActionItems\Custom.cs" />
+    <Compile Include="Common\ActionItems\Examine.cs" />
     <Compile Include="Common\ActionItems\TalkTo.cs" />
     <Compile Include="Common\Condition.cs" />
     <Compile Include="Common\ConditionItems\Active.cs" />
@@ -81,6 +83,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Element.resx</DependentUpon>
     </Compile>
+    <Compile Include="Macro.cs" />
+    <Compile Include="MacroItems\ActivateFlag.cs" />
+    <Compile Include="MacroItems\MacroItem.cs" />
+    <Compile Include="MacroItems\SpeakPlayerMacro.cs" />
+    <Compile Include="MacroItems\TriggerSceneMacro.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="Common\Description.cs" />
     <Compile Include="Player.cs" />

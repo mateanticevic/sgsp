@@ -377,7 +377,7 @@ namespace SGSP.Converter
                             var imageId = Path.GetFileNameWithoutExtension(asset.Uri);
                             var gameObject = imageId + "Image";
 
-                            PngUtility.GetBoundingBox((Bitmap)Bitmap.FromFile(Path.GetDirectoryName(xmlRootPath) + "\\" + asset.Uri + ".png"));
+                            PngUtility.GetBoundingBox((Bitmap)Bitmap.FromFile(Path.GetDirectoryName(xmlRootPath) + "\\" + asset.Uri + "_01.png"));
 
                             script.Properties.Add(new ScriptProperty(gameObject, "GameObject", true));
                             method.CodeChunks.Add(new CodeChunk(1, new ScriptObjectImage(imageId, asset.Uri).ToString()));
@@ -460,7 +460,7 @@ namespace SGSP.Converter
 
         private void DeclareConditionProperties(Condition c)
         {
-            if (c.IsEmpty) return;
+            if (c == null || c.IsEmpty) return;
 
             foreach (var condition in c.Inactives)
             {

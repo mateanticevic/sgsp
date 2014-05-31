@@ -1,7 +1,9 @@
 ﻿using SGSP.eAdventure;
 using SGSP.eAdventure.Common;
+using SGSP.eAdventure.Common.ActionItems;
 using SGSP.eAdventure.Common.ConditionItems;
 using SGSP.eAdventure.ConversationItems;
+using SGSP.eAdventure.MacroItems;
 using SGSP.eAdventure.SceneItems;
 using SGSP.eAdventure.SceneItems.Resources;
 using System;
@@ -107,17 +109,30 @@ namespace SGSP.Converter.ModelCreator
                         a.Description = CreateDescription(aa.Element("description"));
                         a.Transform = CreateTransform(aa);
 
-                        foreach (var action in aa.Element("actions").Elements())
+                        var actionsEle = aa.Element("actions");
+
+                        if (actionsEle != null)
                         {
-                            if (action.Name == "use")
+                            foreach (var action in actionsEle.Elements())
                             {
-                                Use use = new Use();
-                                a.Use = use;
+                                if (action.Name == "custom")
+                                {
+                                    Custom custom = new Custom();
+                                    a.Actions.Add(custom);
 
-                                Effect effect = new Effect();
-                                var effectEle = action.Element("effect");
+                                    custom.Name = action.Attribute("name").Value;
+                                }
+                                else if (action.Name == "use")
+                                {
+                                    Use use = new Use();
+                                    a.Actions.Add(use);
+                                    a.Use = use;
 
-                                if (effectEle != null) use.Effect = CreateEffect(effectEle);
+                                    Effect effect = new Effect();
+                                    var effectEle = action.Element("effect");
+
+                                    if (effectEle != null) use.Effect = CreateEffect(effectEle);
+                                }
                             }
                         }
                     }
@@ -174,22 +189,27 @@ namespace SGSP.Converter.ModelCreator
 
                 #region Exits
 
-                foreach (XElement exitEle in sceneEle.Element("exits").Elements("exit"))
+                var exits = sceneEle.Element("exits");
+
+                if (exits != null)
                 {
-                    Exit exit = new Exit();
-                    scene.Exits.Add(exit);
+                    foreach (XElement exitEle in exits.Elements("exit"))
+                    {
+                        Exit exit = new Exit();
+                        scene.Exits.Add(exit);
 
-                    exit.Transform = CreateTransform(exitEle);
+                        exit.Transform = CreateTransform(exitEle);
 
-                    exit.IsRectangular = exitEle.Attribute("rectangular").Value == "yes" ? true : false;
-                    exit.MouseOverDescription = exitEle.Element("exit-look").Attribute("text").Value;
-                    exit.TargetObjectId = exitEle.Attribute("idTarget").Value;
+                        exit.IsRectangular = exitEle.Attribute("rectangular").Value == "yes" ? true : false;
+                        exit.MouseOverDescription = exitEle.Element("exit-look").Attribute("text").Value;
+                        exit.TargetObjectId = exitEle.Attribute("idTarget").Value;
 
-                    XElement conditionEle = exitEle.Element("condition");
-                    if (conditionEle != null) exit.Condition = CreateCondition(conditionEle);
-                    
-                    var effect = exitEle.Element("effect");
-                    if (effect != null) exit.Effect = CreateEffect(effect);
+                        XElement conditionEle = exitEle.Element("condition");
+                        if (conditionEle != null) exit.Condition = CreateCondition(conditionEle);
+
+                        var effect = exitEle.Element("effect");
+                        if (effect != null) exit.Effect = CreateEffect(effect);
+                    }
                 }
 
                 #endregion
@@ -207,6 +227,10 @@ namespace SGSP.Converter.ModelCreator
                         obj.TargetObject = chapter.Objects.Single(x => x.Id == obj.TargetId);
                         obj.X = Convert.ToInt32(objectEle.Attribute("x").Value);
                         obj.Y = Convert.ToInt32(objectEle.Attribute("y").Value);
+
+                        var cond = objectEle.Element("condition");
+
+                        if (cond != null) obj.Condition = CreateCondition(cond);
                     }
                 }
 
@@ -357,6 +381,42 @@ namespace SGSP.Converter.ModelCreator
 
             #endregion
 
+            #region Macros
+
+            var macros = xml.Elements("macro");
+
+            if (macros != null)
+            {
+                foreach (var macroEle in macros)
+                {
+                    Macro m = new Macro();
+                    chapter.Macros.Add(m);
+
+                    m.Id = macroEle.Attribute("id").Value;
+
+                    foreach (var item in macroEle.Elements())
+                    {
+                        if(item.Name == "speak-player")
+                        {
+                            SpeakPlayerMacro sp = new SpeakPlayerMacro(item.Value);
+                            m.Actions.Add(sp);
+                        }
+                        else if (item.Name == "trigger-scene")
+                        {
+                            TriggerSceneMacro ts = new TriggerSceneMacro(item.Attribute("idTarget").Value);
+                            m.Actions.Add(ts);
+                        }
+                        else if (item.Name == "activate")
+                        {
+                            ActivateFlag af = new ActivateFlag(item.Attribute("flag").Value);
+                            m.Actions.Add(af);
+                        }
+                    }
+                }
+            }
+
+            #endregion
+
 
             #region Second loop
 
@@ -492,6 +552,8 @@ namespace SGSP.Converter.ModelCreator
 
         private static Effect CreateEffect(XElement ele)
         {
+            if (ele == null) return null;
+
             Effect effect = new Effect();
 
 

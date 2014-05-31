@@ -10,7 +10,19 @@ namespace SGSP.eAdventure.ConversationItems
     {
 
         public Guid Guid { get; set; }
-        public string Text { get; set; }
+
+        private string text;
+        public string Text
+        {
+            get
+            {
+                return text;
+            }
+            set
+            {
+                text = value.Replace("\"", "'");
+            }
+        }
 
         public string Id
         {

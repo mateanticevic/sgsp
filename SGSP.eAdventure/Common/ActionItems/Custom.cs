@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGSP.eAdventure.Common
+namespace SGSP.eAdventure.Common.ActionItems
 {
-    public class Action
+    public class Custom : Action
     {
-        public Effect Effect { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -7,6 +7,17 @@ namespace SGSP.eAdventure
 {
     public class BaseElement
     {
-        public string Id { get; set; }
+        private string id;
+        public string Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value.Replace("-", String.Empty);
+            }
+        }
     }
 }

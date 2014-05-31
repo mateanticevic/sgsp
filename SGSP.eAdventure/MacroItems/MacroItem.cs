@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGSP.eAdventure.Common
+namespace SGSP.eAdventure.MacroItems
 {
-    public class Action
+    public class MacroItem
     {
-        public Effect Effect { get; set; }
+        public int Priority { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace SGSP.eAdventure
         {
             Characters = new List<Character>();
             Conversations = new List<Conversation>();
+            Macros = new List<Macro>();
             Objects = new List<Object>();
             Scenes = new List<Scene>();
             SlideScenes = new List<SlideScene>();
@@ -18,6 +19,7 @@ namespace SGSP.eAdventure
 
         public List<Character> Characters { get; set; }
         public List<Conversation> Conversations { get; set; }
+        public List<Macro> Macros { get; set; }
         public List<Object> Objects { get; set; }
         public List<Scene> Scenes { get; set; }
         public List<SlideScene> SlideScenes { get; set; }

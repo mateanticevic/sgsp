@@ -11,7 +11,18 @@ namespace SGSP.eAdventure.Common.ConditionItems
         {
             Flag = flag;
         }
-        public string Flag { get; set; }
+        private string flag;
+        public string Flag
+        {
+            get
+            {
+                return flag;
+            }
+            set
+            {
+                flag = value.Replace("-", String.Empty);
+            }
+        }
 
         public override string ToString()
         {
