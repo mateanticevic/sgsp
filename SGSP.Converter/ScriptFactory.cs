@@ -260,6 +260,20 @@ namespace SGSP.Converter
 
                     var targetObject = obj.TargetObject;
 
+                    foreach (var action in targetObject.Actions)
+                    {
+                        activity.Properties.Add(new ScriptProperty(targetObject.Id + "GuiPosition", "Vector3"));
+                        activity.Properties.Add(new ScriptProperty(targetObject.Id + "GuiActive", "bool"));
+
+                        string payloadActions = CodeUtility.SetVar("State.WearingGloves", true);
+
+                        activity.AddProperty(new ScriptProperty("OverExit" + targetObject.Id, "bool"));
+                        onGui.CodeChunks.Add(new CodeChunk(1, new ScriptShowGui(targetObject.Id, payloadActions).ToString()));
+
+
+                        update.CodeChunks.Add(new CodeChunk(1, new ScriptActivateGuiConditioned(targetObject.Id, boundingBox).ToString()));
+                    }
+
                     if (obj.TargetObject.Use != null)
                     {
                         activity.Properties.Add(new ScriptProperty(targetObject.Id + "GuiPosition", "Vector3"));

@@ -67,9 +67,29 @@ namespace SGSP.Converter.ModelCreator
                 {
                     foreach (var action in ele.Element("actions").Elements())
                     {
-                        if (action.Name == "use")
+                        if (action.Name == "custom")
+                        {
+                            Custom custom = new Custom();
+                            obj.Actions.Add(custom);
+
+                            custom.Name = action.Attribute("name").Value;
+
+                            var eff = action.Element("effect");
+                            if (eff != null) custom.Effect = CreateEffect(eff);
+                        }
+                        else if (action.Name == "examine")
+                        {
+                            Examine examine = new Examine();
+                            obj.Actions.Add(examine);
+
+                            var eff = action.Element("effect");
+                            if (eff != null) examine.Effect = CreateEffect(eff);
+
+                        }
+                        else if (action.Name == "use")
                         {
                             Use use = new Use();
+                            obj.Actions.Add(use);
                             obj.Use = use;
 
                             Effect effect = new Effect();
