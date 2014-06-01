@@ -18,6 +18,7 @@ namespace SGSP.Converter.ConvertLogic
             transform = objectTransform;
         }
 
+
         public override string ToString()
         {
             Dictionary<string, string> rpl = new Dictionary<string,string>();

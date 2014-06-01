@@ -10,4 +10,12 @@ namespace SGSP.eAdventure.Common
     {
         public Effect Effect { get; set; }
     }
+
+    public enum ActionTypes
+    {
+        Custom,
+        Examine,
+        TalkTo,
+        Use
+    }
 }

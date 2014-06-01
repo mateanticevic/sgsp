@@ -1,9 +1,9 @@
 ﻿
 if ({id}GuiActive)
 {
-	Texture2D {id}GuiTxt = Resources.Load ("Gear") as Texture2D;
+	Texture2D {id}GuiTxt = Resources.Load ("{icon}") as Texture2D;
 	GUIContent {id}Gui = new GUIContent ({id}GuiTxt, "Answer the telephone");				
-	if (GUI.Button (new Rect ({id}GuiPosition.x, 600 - {id}GuiPosition.y, 64, 64), {id}Gui))
+	if (GUI.Button (new Rect ({id}GuiPosition.x - {left}, 600 - {id}GuiPosition.y - {down}, 64, 64), {id}Gui))
 	{
 	{action}
 		{id}GuiActive = false;

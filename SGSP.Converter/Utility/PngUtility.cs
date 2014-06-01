@@ -10,6 +10,19 @@ namespace SGSP.Converter.Utility
 {
     class PngUtility
     {
+        public static int GetHeight(string path)
+        {
+            Bitmap bmp = (Bitmap) Bitmap.FromFile(path);
+
+            return bmp.Height;
+        }
+
+        public static int GetWidth(string path)
+        {
+            Bitmap bmp = (Bitmap) Bitmap.FromFile(path);
+
+            return bmp.Width;
+        }
         public static Transform GetBoundingBox(Bitmap bmp)
         {
             int minX = 10000, minY = 10000, maxX = 0, maxY = 0;

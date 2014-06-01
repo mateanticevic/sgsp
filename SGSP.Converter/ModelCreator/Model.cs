@@ -257,6 +257,7 @@ namespace SGSP.Converter.ModelCreator
                         obj.TargetObject = chapter.Objects.Single(x => x.Id == obj.TargetId);
                         obj.X = Convert.ToInt32(objectEle.Attribute("x").Value);
                         obj.Y = Convert.ToInt32(objectEle.Attribute("y").Value);
+                        obj.Layer = Convert.ToInt32(objectEle.Attribute("layer").Value);
 
                         var cond = objectEle.Element("condition");
 

@@ -7,6 +7,7 @@ using SGSP.Converter.UnityProject;
 using SGSP.Converter.Utility;
 using SGSP.eAdventure;
 using SGSP.eAdventure.Common;
+using SGSP.eAdventure.Common.ActionItems;
 using SGSP.eAdventure.ConversationItems;
 using SGSP.eAdventure.SceneItems.Resources;
 using System;
@@ -138,7 +139,7 @@ namespace SGSP.Converter
                     if (exit.TargetObject is Scene)
                     {
                         ScriptExit scriptExit;
-                        if (exit.Effect != null) scriptExit = new ScriptExit(exit, exitId, GenerateEffectActions(exit.Effect));
+                        if (exit.Effect != null) scriptExit = new ScriptExit(exit, exitId, GenerateSetFlags(exit.Effect));
                         else scriptExit = new ScriptExit(exit, exitId);
 
                         if (exit.TargetObjectId == scene.Id) scriptExit.SceneDoesntChange = true;
@@ -172,42 +173,80 @@ namespace SGSP.Converter
                 #region ActiveAreas
                 foreach (var area in scene.ActiveAreas)
                 {
-                    if (area.Use != null)
+                    foreach (var action in area.Actions)
                     {
-                        activity.AddProperty(new ScriptProperty(area.Id + "GuiPosition", "Vector3"));
-                        activity.AddProperty(new ScriptProperty(area.Id + "GuiActive", "bool"));                        
+                        var actionId = "Use";
+                        var actionType = ActionTypes.Use;
 
-                        var payloadActions = GenerateEffectActions(area.Use.Effect);
-
-                        if (area.Use.Effect != null)
+                        if (action is Custom)
                         {
-                            GenerateEffect(activity, area.Use.Effect);
-
-                            if (area.Use.Effect.SpeakPlayer.Count != 0) payloadActions += CodeUtility.SetVar(area.Use.Effect.SpeakPlayer[0].Id, true);
+                            actionType = ActionTypes.Custom;
+                            actionId = "Custom";
+                        }
+                        else if (action is TalkTo)
+                        {
+                            actionType = ActionTypes.TalkTo;
+                            actionId = "TalkTo";
+                        }
+                        else if (action is Examine)
+                        {
+                            actionType = ActionTypes.Examine;
+                            actionId = "Examine";
                         }
 
+                        var areaActionId = area.Id + actionId;
+
+                        activity.AddProperty(new ScriptProperty(areaActionId + "GuiPosition", "Vector3"));
+                        activity.AddProperty(new ScriptProperty(areaActionId + "GuiActive", "bool"));
+
+                        var payloadActions = GenerateSetFlags(action.Effect);
 
 
-                        var triggerSS = area.Use.Effect.TriggerSlideScene;
-                        if (triggerSS != null)
-                        {
-                            payloadActions += CodeUtility.SetVar(triggerSS.PropertyActive, true);
-                            AddSlideScene(activity, triggerSS);
-                        }
+                        activity.AddProperty(new ScriptProperty("OverExit" + areaActionId, "bool"));
 
-                        var triggerS = area.Use.Effect.TriggerScene;
-                        if (triggerS != null) payloadActions += CodeUtility.SceneLoad(triggerS.Id);
+                        onGui.CodeChunks.Add(new CodeChunk(1, new ScriptOverExit(area.Description.Name, areaActionId).ToString()));
+                        onGui.CodeChunks.Add(new CodeChunk(1, new ScriptShowGui(areaActionId, payloadActions, actionType).ToString()));
 
-                        activity.AddProperty(new ScriptProperty("OverExit" + area.Id, "bool"));
+                        if (area.Transform != null) update.CodeChunks.Add(new CodeChunk(10, new ScriptActivateGuiConditioned(areaActionId, area.Transform).ToString()));
+                        else update.CodeChunks.Add(new CodeChunk(10, new ScriptActivateGui(areaActionId).ToString()));
+                    }
 
-                        onGui.CodeChunks.Add(new CodeChunk(1, new ScriptOverExit(area.Description.Name, area.Id).ToString()));
-                        onGui.CodeChunks.Add(new CodeChunk(1, new ScriptShowGui(area.Id, payloadActions).ToString()));
+                    //if (area.Use != null)
+                    //{
+                    //    activity.AddProperty(new ScriptProperty(area.Id + "GuiPosition", "Vector3"));
+                    //    activity.AddProperty(new ScriptProperty(area.Id + "GuiActive", "bool"));
+
+                    //    var payloadActions = GenerateSetFlags(area.Use.Effect);
+
+                    //    if (area.Use.Effect != null)
+                    //    {
+                    //        GenerateEffect(activity, area.Use.Effect);
+
+                    //        if (area.Use.Effect.SpeakPlayer.Count != 0) payloadActions += CodeUtility.SetVar(area.Use.Effect.SpeakPlayer[0].Id, true);
+                    //    }
+
+
+
+                    //    var triggerSS = area.Use.Effect.TriggerSlideScene;
+                    //    if (triggerSS != null)
+                    //    {
+                    //        payloadActions += CodeUtility.SetVar(triggerSS.PropertyActive, true);
+                    //        AddSlideScene(activity, triggerSS);
+                    //    }
+
+                    //    var triggerS = area.Use.Effect.TriggerScene;
+                    //    if (triggerS != null) payloadActions += CodeUtility.SceneLoad(triggerS.Id);
+
+                    //    activity.AddProperty(new ScriptProperty("OverExit" + area.Id, "bool"));
+
+                    //    onGui.CodeChunks.Add(new CodeChunk(1, new ScriptOverExit(area.Description.Name, area.Id).ToString()));
+                    //    onGui.CodeChunks.Add(new CodeChunk(1, new ScriptShowGui(area.Id, payloadActions).ToString()));
 
                         
 
-                        if (area.Transform != null) update.CodeChunks.Add(new CodeChunk(10, new ScriptActivateGuiConditioned(area.Id, area.Transform).ToString()));
-                        else update.CodeChunks.Add(new CodeChunk(10, new ScriptActivateGui(area.Id).ToString()));
-                    }
+                    //    if (area.Transform != null) update.CodeChunks.Add(new CodeChunk(10, new ScriptActivateGuiConditioned(area.Id, area.Transform).ToString()));
+                    //    else update.CodeChunks.Add(new CodeChunk(10, new ScriptActivateGui(area.Id).ToString()));
+                    //}
                 }
 
                 #endregion
@@ -228,12 +267,30 @@ namespace SGSP.Converter
                         {
                             if(asset.Type == "image")
                             {
-                                boundingBox = PngUtility.GetBoundingBox((Bitmap)Bitmap.FromFile(Path.GetDirectoryName(xmlRootPath) + "\\" + asset.Uri));
-
+                                var imgPath = Path.GetDirectoryName(xmlRootPath) + "\\" + asset.Uri;
                                 var imageId = Path.GetFileNameWithoutExtension(asset.Uri);
                                 var gameObject = imageId + "Image";
 
-                                method.CodeChunks.Add(new CodeChunk(1, new ScriptObjectImage(imageId, asset.UriUnityFormat).ToString()));
+                                if(obj.Layer == 2)
+                                {
+                                    Transform bBox = new Transform();
+                                    boundingBox = bBox;
+
+                                    var h = PngUtility.GetHeight(imgPath);
+                                    var w = PngUtility.GetWidth(imgPath);
+
+                                    bBox.Height = h;
+                                    bBox.Width = w;
+                                    bBox.X = obj.X - w;
+                                    bBox.Y = obj.Y - h;
+
+                                    method.CodeChunks.Add(new CodeChunk(1, new ScriptObjectImage(imageId, asset.UriUnityFormat).ToString()));
+                                }
+                                else
+                                {
+                                    boundingBox = PngUtility.GetBoundingBox((Bitmap)Bitmap.FromFile(imgPath));
+                                    method.CodeChunks.Add(new CodeChunk(1, new ScriptObjectImage(imageId, asset.UriUnityFormat).ToString()));
+                                }                                                           
 
                                 script.AddProperty(new ScriptProperty(gameObject, "GameObject", true));
 
@@ -265,7 +322,19 @@ namespace SGSP.Converter
                         activity.Properties.Add(new ScriptProperty(targetObject.Id + "GuiPosition", "Vector3"));
                         activity.Properties.Add(new ScriptProperty(targetObject.Id + "GuiActive", "bool"));
 
-                        string payloadActions = CodeUtility.SetVar("State.WearingGloves", true);
+                        string payloadActions = String.Empty;
+
+                        foreach (var setFlag in action.Effect.SetFlags.Actives)
+                        {
+                            payloadActions += CodeUtility.SetVar(setFlag.ToString(), true) + "\r\n";
+                        }
+
+                        foreach (var setFlag in action.Effect.SetFlags.Inactives)
+                        {
+                            payloadActions += CodeUtility.SetVar(setFlag.ToString(), false) + "\r\n";
+                        }
+
+                        DeclareConditionProperties(action.Effect.SetFlags);
 
                         activity.AddProperty(new ScriptProperty("OverExit" + targetObject.Id, "bool"));
                         onGui.CodeChunks.Add(new CodeChunk(1, new ScriptShowGui(targetObject.Id, payloadActions).ToString()));
@@ -281,7 +350,7 @@ namespace SGSP.Converter
 
                         var triggerSS = targetObject.Use.Effect.TriggerSlideScene;
 
-                        var payloadActions = GenerateEffectActions(targetObject.Use.Effect);
+                        var payloadActions = GenerateSetFlags(targetObject.Use.Effect);
 
                         if (triggerSS != null) payloadActions += CodeUtility.SetVar(triggerSS.PropertyActive, true);
 
@@ -300,7 +369,7 @@ namespace SGSP.Converter
 
                     activity.AddProperty(new ScriptProperty(obj.TargetObject.PropertyOver, "bool"));
 
-                    onGui.CodeChunks.Add(new CodeChunk(5, new ScriptOverObject(obj.TargetObject.Description.Brief, obj.TargetObject.PropertyOver).ToString()));
+                    onGui.CodeChunks.Add(new CodeChunk(5, new ScriptOverObject(obj.TargetObject.Description.ToString(), obj.TargetObject.PropertyOver).ToString()));
                     update.CodeChunks.Add(new CodeChunk(5, new ScriptIsOver(obj.TargetObject.PropertyOver, boundingBox).ToString()));
 
                     #endregion
@@ -499,20 +568,21 @@ namespace SGSP.Converter
 
         }
 
-        private string GenerateEffectActions(Effect effect)
+        private string GenerateSetFlags(Effect effect)
         {
             string output = "";
 
+            if (effect == null) return String.Empty;
             if (effect.SetFlags != null) DeclareConditionProperties(effect.SetFlags);
 
             foreach (var item in effect.SetFlags.Actives)
             {
-                output += CodeTemplate.SetVariable.Replace("{var}", item.ToString()).Replace("{val}", CodeTemplate.True) + "\r\n";
+                output += CodeUtility.SetVar(item.ToString(), true) + "\r\n";
             }
 
             foreach (var item in effect.SetFlags.Inactives)
             {
-                output += CodeTemplate.SetVariable.Replace("{var}", item.ToString()).Replace("{val}", CodeTemplate.False) + "\r\n";
+                output += CodeUtility.SetVar(item.ToString(), false) + "\r\n";
             }
 
             return output;
