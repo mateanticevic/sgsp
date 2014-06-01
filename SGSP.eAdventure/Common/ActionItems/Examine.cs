@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGSP.eAdventure.Common.ActionItems
 {
-    class Examine : Action
+    public class Examine : Action
     {
     }
 }

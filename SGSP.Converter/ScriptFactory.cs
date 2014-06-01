@@ -183,7 +183,7 @@ namespace SGSP.Converter
                         {
                             GenerateEffect(activity, area.Use.Effect);
 
-                            if (area.Use.Effect.SpeakPlayer != null) payloadActions += CodeUtility.SetVar(area.Use.Effect.SpeakPlayer.Id, true);
+                            if (area.Use.Effect.SpeakPlayer.Count != 0) payloadActions += CodeUtility.SetVar(area.Use.Effect.SpeakPlayer[0].Id, true);
                         }
 
 
@@ -243,11 +243,13 @@ namespace SGSP.Converter
                                 activityScripts.Add(oBehavior);
 
                                 var oUpdate = oBehavior.GetMethod(Unity.MethodUpdate);
-                                oUpdate.CodeChunks.Add(new CodeChunk(10, new ScriptVisibility(IfGenerator.Generate(res.Condition)).ToString()));
+                                var visibilityCondition = res.Condition == null ? obj.Condition : res.Condition;
+                                oUpdate.CodeChunks.Add(new CodeChunk(10, new ScriptVisibility(IfGenerator.Generate(visibilityCondition)).ToString()));
 
                                 method.CodeChunks.Add(new CodeChunk(0, CodeTemplate.GameObjectAddComponent.Replace("{object}", gameObject).Replace("{component}", oBehavior.ScriptName)));
 
                                 DeclareConditionProperties(res.Condition);
+                                DeclareConditionProperties(obj.Condition);
                             }
                         }
                     }
@@ -365,25 +367,25 @@ namespace SGSP.Converter
 
                 #region Characters
 
-                foreach (var sChar in scene.Characters)
-                {
+                //foreach (var sChar in scene.Characters)
+                //{
 
-                    update.CodeChunks.Add(new CodeChunk(100, new ScriptVisibility(IfGenerator.Generate(sChar.Condition)).ToString()));
+                //    update.CodeChunks.Add(new CodeChunk(100, new ScriptVisibility(IfGenerator.Generate(sChar.Condition)).ToString()));
 
-                    foreach (var asset in sChar.Character.Assets)
-                    {
-                        if(asset.Type == Element.AssetStandUp)
-                        {
-                            var imageId = Path.GetFileNameWithoutExtension(asset.Uri);
-                            var gameObject = imageId + "Image";
+                //    foreach (var asset in sChar.Character.Assets)
+                //    {
+                //        if(asset.Type == Element.AssetStandUp)
+                //        {
+                //            var imageId = Path.GetFileNameWithoutExtension(asset.Uri);
+                //            var gameObject = imageId + "Image";
 
-                            PngUtility.GetBoundingBox((Bitmap)Bitmap.FromFile(Path.GetDirectoryName(xmlRootPath) + "\\" + asset.Uri + "_01.png"));
+                //            PngUtility.GetBoundingBox((Bitmap)Bitmap.FromFile(Path.GetDirectoryName(xmlRootPath) + "\\" + asset.Uri + "_01.png"));
 
-                            script.Properties.Add(new ScriptProperty(gameObject, "GameObject", true));
-                            method.CodeChunks.Add(new CodeChunk(1, new ScriptObjectImage(imageId, asset.Uri).ToString()));
-                        }
-                    }
-                }
+                //            script.Properties.Add(new ScriptProperty(gameObject, "GameObject", true));
+                //            method.CodeChunks.Add(new CodeChunk(1, new ScriptObjectImage(imageId, asset.Uri).ToString()));
+                //        }
+                //    }
+                //}
 
                 #endregion
 
@@ -504,22 +506,22 @@ namespace SGSP.Converter
 
         private void GenerateEffect(UnityScript activity, Effect effect)
         {
-            if(effect.SpeakPlayer != null)
+            if(effect.SpeakPlayer.Count != 0)
             {
                 var speak = effect.SpeakPlayer;
 
                 var onGui = activity.GetMethod("OnGUI");
-                var payload = new ScriptGuiSpeakPlayer(speak).ToString();
+                var payload = new ScriptGuiSpeakPlayer(speak[0]).ToString();
                 onGui.CodeChunks.Add(new CodeChunk(1, payload));
 
                 var update = activity.GetMethod("Update");
-                var setBool = CodeTemplate.SetVariable.Replace("{var}", speak.Id).Replace("{val}", "false");
+                var setBool = CodeTemplate.SetVariable.Replace("{var}", speak[0].Id).Replace("{val}", "false");
 
-                var turnOff = new ScriptIf(new ScriptIf(setBool, "Input.GetMouseButtonDown(0)").ToString(), speak.Id).ToString();
+                var turnOff = new ScriptIf(new ScriptIf(setBool, "Input.GetMouseButtonDown(0)").ToString(), speak[0].Id).ToString();
 
                 update.CodeChunks.Add(new CodeChunk(5, turnOff));
 
-                activity.Properties.Add(new ScriptProperty(speak.Id, "bool", false));
+                activity.Properties.Add(new ScriptProperty(speak[0].Id, "bool", false));
             }
         }
 

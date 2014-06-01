@@ -122,6 +122,16 @@ namespace SGSP.Converter.ModelCreator
 
                                     custom.Name = action.Attribute("name").Value;
                                 }
+                                else if (action.Name == "examine")
+                                {
+                                    Examine examine = new Examine();
+                                    a.Actions.Add(examine);
+
+                                    var eff = action.Element("effect");
+
+                                    if (eff != null) examine.Effect = CreateEffect(eff);
+
+                                }
                                 else if (action.Name == "use")
                                 {
                                     Use use = new Use();
@@ -556,7 +566,6 @@ namespace SGSP.Converter.ModelCreator
 
             Effect effect = new Effect();
 
-
             var ssTrigger = ele.Element("trigger-cutscene");
             if (ssTrigger != null) effect.TriggerSlideSceneId = ssTrigger.Attribute("idTarget").Value;
 
@@ -590,8 +599,14 @@ namespace SGSP.Converter.ModelCreator
                 effect.SetFlags.Inactives.Add(inactive);
             }
 
-            var speak = ele.Element("speak-player");
-            if (speak != null) effect.SpeakPlayer = new SpeakPlayer() { Text = speak.Value };
+            var speak = ele.Elements("speak-player");
+            if (speak != null)
+            {
+                foreach (var spk in speak)
+                {
+                    effect.SpeakPlayer.Add(new SpeakPlayer() { Text = spk.Value }); 
+                }    
+            }
 
             return effect;
         }

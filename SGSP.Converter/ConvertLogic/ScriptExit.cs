@@ -51,7 +51,7 @@ namespace SGSP.Converter.ConvertLogic
             if (SceneDoesntChange) rpl.Add("{sameScene}", "true");
             else rpl.Add("{sameScene}", "false");
 
-            if (exit.Effect != null && exit.Effect.SpeakPlayer != null) rpl.Add("{speak}", exit.Effect.SpeakPlayer.Id);
+            if (exit.Effect != null && exit.Effect.SpeakPlayer.Count != 0) rpl.Add("{speak}", exit.Effect.SpeakPlayer[0].Id);
             else rpl.Add("{speak}", "var ok");
 
             rpl.Add("{x}", transform.X.ToString());

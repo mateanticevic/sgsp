@@ -14,10 +14,12 @@ namespace SGSP.eAdventure.Common
         {
             Condition = new Condition();
             SetFlags = new Condition();
+
+            SpeakPlayer = new List<SpeakPlayer>();
         }
 
         public Condition SetFlags { get; set; }
-        public SpeakPlayer SpeakPlayer { get; set; }
+        public List<SpeakPlayer> SpeakPlayer { get; set; }
         public Condition Condition { get; set; }
         public Scene TriggerScene { get; set; }
         public SlideScene TriggerSlideScene { get; set; }
